@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { FrontendModule } from './frontend/frontend.module';
 
 import { HttpClientModule } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     FrontendModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' + (window.location.pathname.split('/')[1] || '') }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
